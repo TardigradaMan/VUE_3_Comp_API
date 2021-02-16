@@ -1,0 +1,7 @@
+diff a/src/store/index.js b/src/store/index.js	(rejected hunks)
+@@ -1 +1 @@
+-import { createStore } from "vuex";
++import { createStore } from 'vuex'
+@@ -8 +8 @@ export default createStore({
+-});
++})

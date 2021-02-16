@@ -1,17 +1,24 @@
 {
-  "name": "14",
+  "name": "vue-3",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Fadin Ivan",
+    "email": "fadin89@gmail.com"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "vee-validate": "^4.1.16",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vuex": "^4.0.0-0",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

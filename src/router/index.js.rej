@@ -1,0 +1,28 @@
+diff a/src/router/index.js b/src/router/index.js	(rejected hunks)
+@@ -1,2 +1,2 @@
+-import { createRouter, createWebHistory } from "vue-router";
+-import Home from "../views/Home.vue";
++import { createRouter, createWebHistory } from 'vue-router'
++import Home from '../views/Home.vue'
+@@ -6,2 +6,2 @@ const routes = [
+-    path: "/",
+-    name: "Home",
++    path: '/',
++    name: 'Home',
+@@ -11,2 +11,2 @@ const routes = [
+-    path: "/about",
+-    name: "About",
++    path: '/about',
++    name: 'About',
+@@ -17 +17 @@ const routes = [
+-      import(/* webpackChunkName: "about" */ "../views/About.vue")
++      import(/* webpackChunkName: "about" */ '../views/About.vue')
+@@ -19 +19 @@ const routes = [
+-];
++]
+@@ -24 +24 @@ const router = createRouter({
+-});
++})
+@@ -26 +26 @@ const router = createRouter({
+-export default router;
++export default router
