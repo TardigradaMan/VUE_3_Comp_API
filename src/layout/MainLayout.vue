@@ -2,7 +2,10 @@
   <the-navbar />
   <the-sidebar />
   <div class="container with-nav">
-    <app-message />
+    <transition name="message">
+      <AppMessage />
+    </transition>
+
     <router-view />
     <test />
   </div>
@@ -18,4 +21,21 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.message-enter-from {
+  opacity: 0;
+  transform: translateY(-60px);
+}
+
+.message-enter-active {
+  transition: all 0.4s ease;
+}
+
+.message-leave-to {
+  opacity: 0;
+  transform: translateY(-60px);
+}
+.message-leave-active {
+  transition: all 0.4s ease;
+}
+</style>
