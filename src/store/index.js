@@ -18,26 +18,29 @@ export default createStore({
     }
   },
   mutations: {
-    setMessage(state, message) {
+    SET_MESSAGE(state, message) {
       state.message = message
     },
-    clearMessage(state) {
+    CLEAR_MESSAGE(state) {
       state.message = null
     },
-    openSidebar(state) {
+    OPEN_SIDEBAR(state) {
       state.sidebar = true
     },
-    closeSidebar(state) {
+    CLOSE_SIDEBAR(state) {
       state.sidebar = false
     }
   },
   actions: {
     setMessage({ commit }, message) {
-      commit('setMessage', message)
+      commit('SET_MESSAGE', message)
       setTimeout(() => {
-        commit('clearMessage')
+        commit('CLEAR_MESSAGE')
       }, timeoutMsg)
     }
   },
-  modules: { auth, request }
+  modules: {
+    auth,
+    request
+  }
 })

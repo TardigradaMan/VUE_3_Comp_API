@@ -9,22 +9,24 @@ export default {
     }
   },
   mutations: {
-    setRequest(state, requests) {
+    SET_REQUEST(state, requests) {
       state.requests = requests
     },
-    addRequest(state, request) {
+    ADD_REQUEST(state, request) {
       state.requests.push(request)
     }
   },
   actions: {
     async create({ commit, dispatch }, payload) {
       try {
+        console.log(payload)
         const token = store.getters['auth/token']
         const { data } = await axios.post(
           `/request.json?auth=${token}`,
           payload
         )
-        commit('addRequest', { ...payload, id: data.name })
+
+        commit('ADD_REQUEST', { ...payload, id: data.name })
         dispatch(
           'setMessage',
           {
@@ -48,10 +50,14 @@ export default {
       try {
         const token = store.getters['auth/token']
         const { data } = await axios.get(`/request.json?auth=${token}`)
-
-        const requests = Object.keys(data).map(id => ({ ...data[id], id }))
-        commit('setRequest', requests)
+        if (data) {
+          const requests = Object.keys(data).map(id => ({ ...data[id], id }))
+          commit('SET_REQUEST', requests)
+        } else {
+          commit('SET_REQUEST', [])
+        }
       } catch (error) {
+        console.log('Ошибка из auth/load блок catch')
         dispatch(
           'setMessage',
           {
@@ -83,7 +89,6 @@ export default {
       try {
         const token = store.getters['auth/token']
         await axios.delete(`/request/${id}.json?auth=${token}`)
-      } catch (error) {
         dispatch(
           'setMessage',
           {
@@ -92,6 +97,8 @@ export default {
           },
           { root: true }
         )
+      } catch (error) {
+        throw Error(error)
       }
     },
     async update({ dispatch }, request) {

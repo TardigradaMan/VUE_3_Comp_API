@@ -1,6 +1,10 @@
 <template>
   <app-loader v-if="loading"></app-loader>
   <app-start-page back v-else-if="request" title="Подробности заявки">
+    <p>
+      <strong>Дата заявки</strong>:
+      {{ new Date(request.date).toLocaleString() }}
+    </p>
     <p><strong>Имя владельца</strong>: {{ request.fio }}</p>
     <p><strong>Телефон</strong>: {{ request.phone }}</p>
     <p><strong>Сумма</strong>: {{ currency(request.amount) }}</p>

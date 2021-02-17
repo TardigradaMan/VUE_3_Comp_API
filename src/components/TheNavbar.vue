@@ -28,10 +28,10 @@ export default {
     const store = useStore()
     return {
       logout: () => {
-        store.commit('auth/logout')
+        store.commit('auth/LOGOUT')
         router.push('/auth')
       },
-      openSidebar: () => store.commit('openSidebar')
+      openSidebar: () => store.commit('OPEN_SIDEBAR')
     }
   }
 }

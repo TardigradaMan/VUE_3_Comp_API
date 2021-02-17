@@ -43,8 +43,10 @@ export default {
   emits: ['created'],
   setup(props, { emit }) {
     const store = useStore()
+
     const submit = async values => {
-      store.dispatch('request/create', values)
+      const dateCreated = new Date()
+      store.dispatch('request/create', { ...values, date: dateCreated })
       emit('created')
     }
     return {

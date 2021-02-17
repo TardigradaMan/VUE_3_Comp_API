@@ -16,7 +16,7 @@ export default {
     const sidebar = computed(() => store.state.sidebar)
     return {
       sidebar,
-      close: () => store.commit('closeSidebar')
+      close: () => store.commit('CLOSE_SIDEBAR')
     }
   }
 }

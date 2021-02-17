@@ -27,7 +27,7 @@ export default {
       message,
       title,
       close: () => {
-        store.commit('clearClose')
+        store.commit('CLEAR_MESSAGE')
       }
     }
   }

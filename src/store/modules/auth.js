@@ -11,11 +11,11 @@ export default {
     }
   },
   mutations: {
-    setToken(state, token) {
+    SET_TOKEN(state, token) {
       state.token = token
       localStorage.setItem('jwt-token', token)
     },
-    logout(state) {
+    LOGOUT(state) {
       state.token = null
       localStorage.removeItem('jwt-token')
     }
@@ -27,8 +27,8 @@ export default {
           ...user,
           returnSecureToken: true
         })
-        commit('setToken', data.idToken)
-        commit('clearMessage', null, { root: true })
+        commit('SET_TOKEN', data.idToken)
+        commit('CLEAR_MESSAGE', null, { root: true })
       } catch (e) {
         console.log(error(e.response.data.error.message))
         dispatch(

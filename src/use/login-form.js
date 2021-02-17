@@ -1,5 +1,5 @@
 import { computed, watch } from 'vue'
-import * as yup from 'yup'
+import { object, string } from 'yup'
 import { useField, useForm } from 'vee-validate'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
@@ -7,15 +7,14 @@ import { useRouter } from 'vue-router'
 export default function useLoginForm() {
   const store = useStore()
   const router = useRouter()
+
   const PASSWORD_MiN = 6
-  const schema = yup.object({
-    email: yup
-      .string()
+  const schema = object({
+    email: string()
       .trim()
       .required('Введите ваш email')
       .email('Необходимо ввести корректный email'),
-    password: yup
-      .string()
+    password: string()
       .trim()
       .required('Введите ваш пароль')
       .min(PASSWORD_MiN, `Пароль не может быть менее ${PASSWORD_MiN} символов`)
@@ -26,10 +25,18 @@ export default function useLoginForm() {
     validationSchema: schema
   })
 
+  /* test */
+  console.log()
+  /* test */
+
   // No need to define rules for fields
-  const { value: email, errorMessage: eError, handleBlur: eBlur } = useField(
-    'email'
-  )
+  const {
+    value: email,
+    errorMessage: eError,
+    handleBlur: eBlur,
+    handleChange: eChange
+  } = useField('email')
+
   const { value: password, errorMessage: pError, handleBlur: pBlur } = useField(
     'password'
   )
@@ -44,6 +51,7 @@ export default function useLoginForm() {
   })
 
   const isTooManyAttempts = computed(() => submitCount.value >= 3)
+
   watch(isTooManyAttempts, val => {
     if (val) {
       setTimeout(() => {
@@ -60,6 +68,7 @@ export default function useLoginForm() {
     eBlur,
     pBlur,
     onSubmit,
+    eChange,
     isSubmitting,
     isTooManyAttempts
   }

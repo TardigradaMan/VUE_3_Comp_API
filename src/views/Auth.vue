@@ -4,11 +4,13 @@
     <div :class="['form-control', { invalid: eError }]">
       <label for="email">Email</label>
       <input
+        @change="eChange"
         @blur="eBlur"
-        v-model="email"
+        :email="email"
         type="text"
         name="email"
         id="email"
+        placeholder="Введите ваш email"
       />
       <small v-if="eError">{{ eError }}</small>
     </div>
@@ -20,12 +22,13 @@
         type="password"
         name="password"
         id="password"
+        placeholder="Введите ваш пароль"
       />
       <small v-if="pError">{{ pError }}</small>
     </div>
     <button
       :disabled="isSubmitting || isTooManyAttempts"
-      class="btn primary"
+      class="btn primary mt-20"
       type="submit"
     >
       Войти

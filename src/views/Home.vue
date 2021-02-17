@@ -5,8 +5,7 @@
       <button @click="modal = true" class="btn primary">Создать</button>
     </template>
 
-    <request-filter v-model="filter"></request-filter>
-
+    <RequestFilter v-model="filter" />
     <request-table :requests="requests"></request-table>
 
     <teleport to="body">
@@ -49,7 +48,8 @@ export default {
     })
 
     const requests = computed(() =>
-      store.getters['request/requests']
+      [...store.getters['request/requests']]
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
         .filter(request => {
           if (filter.value.name) {
             return request.fio
@@ -65,6 +65,8 @@ export default {
           return request
         })
     )
+
+    console.log(requests)
 
     return {
       modal,
